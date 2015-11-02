@@ -2,15 +2,5 @@
 	"FileVersion": 3,
 	"EngineAssociation": "4.9",
 	"Category": "",
-	"Description": "",
-	"Modules": [
-		{
-			"Name": "Resource_Project",
-			"Type": "Runtime",
-			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
-				"Engine"
-			]
-		}
-	]
+	"Description": ""
 }
