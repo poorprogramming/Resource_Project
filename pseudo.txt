@@ -1,31 +1,65 @@
-0.93976844501925
-
-1	1000
-2	979.517
-3	959.4535533
-4	939.8010662
-5	920.5511209
-6	901.6954723
+BuildTime * pow(0.979517, LevelUp)
 
 
-############################################################################
 
-
-BuildTime * (0.979517 ^ LevelUp)
-
-LevelUp (floor((Available - Level) / 5))
-
-
+LevelUp{ (floor((newAvailable / 5) - Level)) }
 
 
 ############################################################################
 
 
 
-if (newAvailable <= 1000) {
-	if (newAvailable % 5 == 0) OR (((newAvailable - floorProgress) / 5) >= 1)
-	{
-		Set members in Element;
-		Resource++;
-	}
+if (newAvailable <= 1000) && (LevelUp >= 1) {
+
+	Set members in Element;
+	Resource++;
+
+}
+
+
+############################################################################
+
+############################
+#                          #
+#  Level++(ele, progress)  #
+#                          #
+############################
+
+builtHighScore = ele.available;
+
+newCount = ele.count+floor(progress);
+progressLeftovers = progress - floor(progress);
+levelsGained = LevelUp(newCount, ele.level)
+
+function LevelUp(newCount, Level, revolution) \\ return levels gained
+{
+	if (newCount < 1000)
+		{ return floor((newCount / 5) - Level); }
+	else if (newCount < 10000) && (revolution >= 1)
+		{ return floor(((newCount-1000) / 50) + 200 - Level); }
+	else if (newCount < 100000) && (revolution >= 2)
+		{ return floor(((newCount-10000) / 500) + 380 - Level); }
+	else if (newCount < 1000000) && (revolution >= 3)
+		{ return floor(((newCount-100000) / 5000) + 560 - Level); }
+	else if (newCount < 10000000) && (revolution >= 4)
+		{ return floor(((newCount-1000000) / 50000) + 740 - Level); }
+	else if (newCount < 100000000) && (revolution >= 5)
+		{ return floor(((newCount-10000000) / 500000) + 920 - Level); }
+	else if (newCount < 2000000000) && (revolution >= 6)
+		{ return floor(((newCount-100000000) / 5000000) + 1100 - Level); }
+
+}
+
+
+
+if (newCount > builtHighScore) \\ do we need to do a levelup check?
+{
+	ele.count = newCount;
+	builtHighScore = newCount;
+	ele.level = ele.level + levelsGained;
+}
+else \\ no levelup check? increment count only
+{
+	ele.count = newCount;
+	ele.progress = progressLeftovers;
 }
