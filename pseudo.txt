@@ -1,65 +1,160 @@
-BuildTime * pow(0.979517, LevelUp)
+calculate build time
+#######################
+
+(BuildTime / WorkerBonus) / SourceCount
+
+BuildTime = base_time * level_bonus
 
 
+level_bonus = pow(0.981117, Level)
 
-LevelUp{ (floor((newAvailable / 5) - Level)) }
-
-
-############################################################################
+Level = see blueprint lol
 
 
+calculate worker bonus
+######################
+worker_bonus = 1
 
-if (newAvailable <= 1000) && (LevelUp >= 1) {
+FOR (i=homos_required*2, i <= extra_homos, i*2)
+	worker_bonus++;
 
-	Set members in Element;
-	Resource++;
-
-}
+return worker_bonus
 
 
-############################################################################
+progress
+######################
 
-############################
-#                          #
-#  Level++(ele, progress)  #
-#                          #
-############################
+IF homos >= required and building is true
 
-builtHighScore = ele.available;
+	calculate potential_progress + current_progress
+	{
+		delta_seconds / build_time
+	}
 
-newCount = ele.count+floor(progress);
-progressLeftovers = progress - floor(progress);
-levelsGained = LevelUp(newCount, ele.level)
+	IF current + potential_progress >= 1
+		level++
+		buy next
 
-function LevelUp(newCount, Level, revolution) \\ return levels gained
+	ELSE
+		add potential_progress to current
+
+
+level++
+######################
+
+buy extras
+increase count by 1 + affordable_extra
+IF count > max_count
+	count = max_count
+
+check for levelup
+rollover excess progress
+
+
+homo level++
+######################
+
+//buy extras
+increase available by 1 + affordable_extra
+//increase count by 1 + affordable_extra
+
+// IF count > max_count
+// 	count = max_count
+
+//check for levelup
+//rollover excess progress
+
+
+buy
+######################
+
+affordable = floor(count / cost)
+
+price check
 {
-	if (newCount < 1000)
-		{ return floor((newCount / 5) - Level); }
-	else if (newCount < 10000) && (revolution >= 1)
-		{ return floor(((newCount-1000) / 50) + 200 - Level); }
-	else if (newCount < 100000) && (revolution >= 2)
-		{ return floor(((newCount-10000) / 500) + 380 - Level); }
-	else if (newCount < 1000000) && (revolution >= 3)
-		{ return floor(((newCount-100000) / 5000) + 560 - Level); }
-	else if (newCount < 10000000) && (revolution >= 4)
-		{ return floor(((newCount-1000000) / 50000) + 740 - Level); }
-	else if (newCount < 100000000) && (revolution >= 5)
-		{ return floor(((newCount-10000000) / 500000) + 920 - Level); }
-	else if (newCount < 2000000000) && (revolution >= 6)
-		{ return floor(((newCount-100000000) / 5000000) + 1100 - Level); }
+	WHILE target_amount > 0
 
+		FOREACH in cost
+
+			IF affordable >= target_amount
+				next
+
+			ELSEIF affordable >= 1
+				actual amount = affordable
+				next
+
+			ELSE
+				target_amount = 0
 }
 
-
-
-if (newCount > builtHighScore) \\ do we need to do a levelup check?
+purchase
 {
-	ele.count = newCount;
-	builtHighScore = newCount;
-	ele.level = ele.level + levelsGained;
+	IF target_amount > 0
+
+		FOREACH in cost
+			subtract price * target_amount
 }
-else \\ no levelup check? increment count only
-{
-	ele.count = newCount;
-	ele.progress = progressLeftovers;
-}
+
+return target_amount
+
+
+tile++
+######################
+
+IF available > 0
+	spawn source
+	highlight available locations
+
+	(on empty tile click)
+	decrement available
+	set source in map and map array
+
+	(on cancel or click outside highlights)
+	clear spawn
+
+
+tile--
+######################
+
+set cursor to destructo
+highlight sources that can be removed
+
+(on removable source click)
+remove actor from map and map array
+increment available
+reset cursor
+
+(on cancel or click outside removables)
+reset cursor
+
+homo++
+######################
+
+IF homo_available > 0
+	IF building is false
+		buy
+	decrement homos_available
+	increment homos_working
+
+	IF homos_extra >= (homos_required*2)
+		calculate bonus
+
+
+homo--
+######################
+
+IF homos_working > 0
+	decrement homos_working
+	increment homos_available
+
+	IF homos_extra >= (homos_required*2)
+		calculate worker bonus
+
+	ELSEIF homos_working = 0
+		refund cost
+		set resource to not building
+
+
+refund
+#######################
+
