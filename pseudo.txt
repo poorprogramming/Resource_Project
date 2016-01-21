@@ -32,6 +32,7 @@ IF homos >= required and building is true
 	}
 
 	IF current + potential_progress >= 1
+		buy extras
 		level++
 		buy next
 
@@ -42,27 +43,15 @@ IF homos >= required and building is true
 level++
 ######################
 
-buy extras
-increase count by 1 + affordable_extra
+count = count + progress_int
+IF resource = "Homo"
+	available = available + progress_int
+
+
 IF count > max_count
 	count = max_count
 
 check for levelup
-rollover excess progress
-
-
-homo level++
-######################
-
-//buy extras
-increase available by 1 + affordable_extra
-//increase count by 1 + affordable_extra
-
-// IF count > max_count
-// 	count = max_count
-
-//check for levelup
-//rollover excess progress
 
 
 buy
