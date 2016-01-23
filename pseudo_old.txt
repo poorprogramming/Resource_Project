@@ -33,20 +33,26 @@ levelsGained = LevelUp(newCount, ele.level)
 
 function LevelUp(newCount, Level, revolution) \\ return levels gained
 {
-	if (newCount < 1000)
-		{ return floor((newCount / 5) - Level); }
-	else if (newCount < 10000) && (revolution >= 1)
-		{ return floor(((newCount-1000) / 50) + 200 - Level); }
-	else if (newCount < 100000) && (revolution >= 2)
-		{ return floor(((newCount-10000) / 500) + 380 - Level); }
-	else if (newCount < 1000000) && (revolution >= 3)
-		{ return floor(((newCount-100000) / 5000) + 560 - Level); }
-	else if (newCount < 10000000) && (revolution >= 4)
-		{ return floor(((newCount-1000000) / 50000) + 740 - Level); }
-	else if (newCount < 100000000) && (revolution >= 5)
-		{ return floor(((newCount-10000000) / 500000) + 920 - Level); }
-	else if (newCount < 2000000000) && (revolution >= 6)
-		{ return floor(((newCount-100000000) / 5000000) + 1100 - Level); }
+	if (count < 1000)
+		{ return floor((count / 5)); }
+
+	else if (count < 10000) && (revolution >= 1)
+		{ return floor(((count-1000) / 50) + 200); }
+
+	else if (count < 100000) && (revolution >= 2)
+		{ return floor(((count-10000) / 500) + 380); }
+
+	else if (count < 1000000) && (revolution >= 3)
+		{ return floor(((count-100000) / 5000) + 560); }
+
+	else if (count < 10000000) && (revolution >= 4)
+		{ return floor(((count-1000000) / 50000) + 740); }
+
+	else if (count < 100000000) && (revolution >= 5)
+		{ return floor(((count-10000000) / 500000) + 920); }
+
+	else if (count < 2000000000) && (revolution >= 6)
+		{ return floor(((count-100000000) / 5000000) + 1100); }
 
 }
 

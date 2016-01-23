@@ -50,8 +50,7 @@ IF resource = "Homo"
 
 IF count > max_count
 	count = max_count
-
-check for levelup
+	check for levelup
 
 
 buy
