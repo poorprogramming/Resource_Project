@@ -1,7 +1,11 @@
-calculate build time
+calculate progress
 #######################
 
 (BuildTime / WorkerBonus) / SourceCount
+
+
+calculate build time
+#######################
 
 BuildTime = base_time * level_bonus
 
