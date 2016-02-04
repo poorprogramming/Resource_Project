@@ -4,15 +4,10 @@ calculate progress
 (BuildTime / WorkerBonus) / SourceCount
 
 
-calculate build time
+calculate BuildTime
 #######################
 
-BuildTime = base_time * level_bonus
-
-
-level_bonus = pow(0.981117, Level)
-
-Level = see blueprint lol
+(BaseBuildTime / Multiplier) * (pow(0.981117, Level))
 
 
 calculate worker bonus
@@ -147,6 +142,30 @@ IF homos_working > 0
 		set resource to not building
 
 
-refund
-#######################
+level calc
+########################
 
+
+count < 5
+	level = 0
+
+count < 1000
+	level = floor(count/5)
+
+count < 10,000 && rev >= 1
+	level = floor((count - 1,000) / 50) + 200
+
+count < 100,000 && rev >= 2
+	level = floor((count - 10,000) / 500) + 380
+
+count < 1,000,000 && rev >= 3
+	level = floor((count - 100,000) / 5,000) + 560
+
+count < 10,000,000 && rev >= 4
+	level = floor((count - 1,000,000) / 50,000) + 740
+
+count < 100,000,000 && rev >= 5
+	level = floor((count - 10,000,000) / 500,000) + 920
+
+count < 2,000,000,000 && rev >= 6
+	level = floor((count - 100,000,000) / 5,000,000) + 1100
