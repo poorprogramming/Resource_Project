@@ -3,6 +3,8 @@ calculate progress
 
 (BuildTime / WorkerBonus) / SourceCount
 
+((DeltaSeconds / BuildTime) * DevSpeed) + Progress
+
 
 calculate BuildTime
 #######################
@@ -146,9 +148,6 @@ level calc
 ########################
 
 
-count < 5
-	level = 0
-
 count < 1000
 	level = floor(count/5)
 
@@ -169,3 +168,43 @@ count < 100,000,000 && rev >= 5
 
 count < 2,000,000,000 && rev >= 6
 	level = floor((count - 100,000,000) / 5,000,000) + 1100
+
+############################################################
+
+$i = 0;
+$next = 0;
+$Level = -1;
+$factor = 1;
+$revCap = True;
+
+
+while($next < $xp){
+
+	$next += (5 * $factor);
+	$Level++;
+
+	if ($next >= (1000 * $factor))
+		if ($revCap == FALSE) || (($revCap == TRUE) && ($i < $revolution)
+			$factor = $factor * 10;
+			i++;
+		else
+			break;
+}
+
+return $Level
+
+
+
+
+
+    $n = -1;
+    $L = 0;
+
+    while($n < $xp){
+        $n += 5
+        $L++;
+    }
+
+    echo("Current XP: " .$xp);
+    echo("Current Level: ".$L);
+    echo("Next Level: " .$n);
