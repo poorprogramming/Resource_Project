@@ -176,19 +176,20 @@ $next = 0;
 $Level = -1;
 $factor = 1;
 $revCap = True;
+$break = False;
 
 
-while($next < $xp){
+while($next < $xp) && ($break != True){
 
 	$next += (5 * $factor);
 	$Level++;
 
 	if ($next >= (1000 * $factor))
-		if ($revCap == FALSE) || (($revCap == TRUE) && ($i < $revolution)
+		if ($revCap == FALSE) || (($revCap == TRUE) && ($i < $revolution))
 			$factor = $factor * 10;
 			i++;
 		else
-			break;
+			$break = True;
 }
 
 return $Level
