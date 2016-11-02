@@ -1,7 +1,8 @@
 
   homos minus minus ffs
 
-> production multiplier
+> remove homos when out of mana
+> production multiplier [worker bonus] + tier level bonus
 > reinstate click levels
 
 * actions
