@@ -1,8 +1,8 @@
 
-  homos minus minus ffs
+ ^mana tier all wonky
 
-> remove homos when out of mana
-> production multiplier [worker bonus] + tier level bonus
+  production multiplier [worker bonus] + tier level bonus
+
 > reinstate click levels
 
 * actions
