@@ -1,9 +1,10 @@
 
-  production multiplier [worker bonus] + tier level bonus
+  click levels
 
-> reinstate click levels
+> source unlock
 
 * actions
+* options panel
 
 
      # # # # # 
