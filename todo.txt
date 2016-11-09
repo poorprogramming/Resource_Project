@@ -1,6 +1,4 @@
 
- ^mana tier all wonky
-
   production multiplier [worker bonus] + tier level bonus
 
 > reinstate click levels
