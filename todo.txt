@@ -1,7 +1,12 @@
 
+^ building flag causing freebies
+^ revolution click to start fubar'd
+
   click levels
+  map placement (remove paths, place anywhere)
 
 > source unlock
+> run time (replace 'worthless clicks')
 
 * actions
 * options panel
